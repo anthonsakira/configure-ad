@@ -45,7 +45,7 @@ In this screenshot, you will see that I numbered the steps in creating the Resou
 <br />
   
 <br />
-  1) We can search "Resource Group" in the search bar for a quick find.
+  1) We can search "Resource Group" in the search bar for a quick find. Then we click "+Create"
 <br />
   2) We must name our Resource Group and select the proper region for your area.
 <br />
