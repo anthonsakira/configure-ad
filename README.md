@@ -41,10 +41,12 @@ This project will be a 2 part project. In this 1st part, we will be creating our
 <img src="https://i.imgur.com/e5xIVb7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-In this screenshot, you will see that I numbered the steps in creating the Resource Group. 
-<br />
-  
-<br />
+In this screenshot, you will see that I numbered the steps in creating the Resource Group.
+
+<p>
+First, go to https://portal.azure.com/#home to setup our Active Directory Infrastructure
+
+<p> 
   1) We can search "Resource Group" in the search bar for a quick find. Then we click "+Create"
 <br />
   2) We must name our Resource Group and select the proper region for your area.
