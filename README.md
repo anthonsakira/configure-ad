@@ -121,33 +121,313 @@ If errors occur, please double check the steps listed above and compare settings
 Once the validation has passed we can select "Create" once again.
 
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/8fr5GIm.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/jPyOnc2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+Once it's done deploying and it is up and running, we can go back to Virtual Machines on Azure and we will create another VM which will then be our "Client". 
+
+<p>
+<img src="https://i.imgur.com/VnekXaO.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+While in "Basics" tab we're going to put our VM inside the same Resource Group that we've been using which is "Active-Directory-Lab" and please make sure it's under the same Region as well.
+<p>
+For this VM we will be naming it "client-1"
+
+<p>
+<img src="https://i.imgur.com/8BAge5F.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+We can now scroll down to "Image", "Size" and "Username/PW" and we can choose the following options below.
+<p> 
+  
+  Image: ***Windows 10 Pro, version 22h2 -x64 Gen2***
+<p>
+  
+  Size: ***Standard_D2s_v3 - 2vcpus, 8GiB memory***
+<p>
+  
+  Username: ***labuser***
+<p>
+  
+  Password: ***Cyberlab123!***
+
+<p>
+<img src="https://i.imgur.com/y5J37mB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/HrkvupE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Once you're done with the page you can scroll down to "Licensing" and check the box. (1st Screenshot)
+<p>
+
+  ***NOTE***   PLEASE MAKE SURE YOU CHECK THIS BOX UNDER LICENSING OR ELSE YOU WON'T BE ABLE TO CREATE THE VM
+
+After you check the box you can go to the next two tabs called "Networking" make sure the Virtual Network is set to "Active-Directory-VNet" then
+we can press "Review+Create) when done. (2nd Screenshot)
+
+<p>
+<img src="https://i.imgur.com/hVFuPxd.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+Once again, when the validation has passed and you got a green check mark and the deployment is done you're good to configure your Domain Controller's NIC Private IP adress to be "Static".
+<p>
+I will be showing you how in the next few steps.
+
+<p>
+<img src="https://i.imgur.com/R7q9UVr.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+In order to get here, we must go back to Virtual Machines and then go to "dc-1" which is our domain controller.
+After that, you want to click "dc-1" --> Drop-down Networking --> Networking Settings
+<p>
+You must click the blue highlighted item under "Network interface/Ip configuration" which I underlined red in the picture.
+
+<p>
+<img src="https://i.imgur.com/dhsQNVg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+Once you click the box you will be redirected to this page. Make sure you're under Settings --> Ip Configurations.
+Next, click "ipconfig1" highlighted in blue as shown in the screenshot and a mini page will pop up on the right side of your screen.
+<p>
+Under "Private IP address settings", change the allocation from "Dynamic" to "Static" then click Save. 
+<p>
+This will then keep your Private IP address the same no matter how many times you restart it.
+
+
+<p>
+<img src="https://i.imgur.com/iuyO9VO.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+Now, once we're finished with setting our Private IP address to static we can go back to virtual machines and copy the Public IP address for "dc-1".
+<p>
+We're going to connect to "Remote Desktop Connection" in the next following steps.
+
+<p>
+<img src="https://i.imgur.com/bDtChFI.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/83iVTwv.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/dBHUq1M.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+In the pictures above, I showed how you can find "Remote Desktop Connection" for ***WINDOWS OS***. 
+<p>
+You can search it up on the bottom taskbar on your computer right next to the windows logo.
+<p>
+Once you see it, click it, it will open a little window which you've seen on the 3RD SCREENSHOT.
+
+<p>
+<img src="https://i.imgur.com/dBHUq1M.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/Ki6DFrS.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+Once you've copied the Public IP address from "dc-1" you're going to paste it to "Remote Desktop Connection" where it says "Computer"
+<p>
+Another window will pop up telling you to sign in but before that make sure you click "more choices" >>> "Use a different account".
+<p>
+  
+We're going to sign in with ***"labuser"*** and the password we're using is ***"Cyberlab123!"***
+
+<p>
+<img src="https://i.imgur.com/7KOF0wx.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+If you come across this window after connecting just press "Yes" everytime it comes up.
+
+<p>
+<img src="https://i.imgur.com/7CFEl7O.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Once you're connected, this "Server Manager" window should pop up, and if it doesn't, make sure you're using "Windows Server" not "Windows 10 pro". 
+<p>
+Otherwise, you can re-do the steps above if any errors occur.
+<p>
+<img src="https://i.imgur.com/fYcoOlb.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/fq7Kpvt.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+***INSIDE THE VM***
+<p>
+When you're good to go, we can search "run" on the bottom left and type in "wf.msc" this will bring up "Windows Firewall"
+
+<p>
+<img src="https://i.imgur.com/quKy3AG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Please click the blue highlighted item named "Windows Defender Firewall Properties"
+<p>
+Next, after pressing the highlighted item a window will pop up and we will switch the "Firewall state" from "On" to "Off"
+<p>
+Please do the same for the other 2 tabs labeled.
+<p>
+When done, click apply then press okay.
+<p>
+
+  - ***Next, we will set Client-1's DNS settings to DC-1's Private IP address***
+
+<p>
+<img src="https://i.imgur.com/6vkCz3i.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+First, we have to go back to Azure Virtual Machines on our main computer and we're going to click on ***dc-1***
+<p>
+Then, in the "Overview" tab under "Networking" we can see our Private IP address which is 10.0.0.4 but this can be different on your end.
+<p>
+Copy the Private IP address then we will paste it in the following step below.
+
+<p>
+<img src=https://i.imgur.com/7qMzSSZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+After copying the Private IP address we can go to the network settings under networking while being in the same page. 
+<p>
+Then we can click on the highlighted item that is underlined in red.
+
+<p>
+<img src="https://i.imgur.com/5Id8Yl1.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Once you click on it, it will direct you to this page make sure that you're in "DNS servers" under settings
+<p>
+Now we want to change the DNS server from "inherit from virtual network" to "Custom"
+<p>
+Then, we can paste our Client's Private IP address into the DNS Server Name and then click "Save"
+
+<p>
+<img src="https://i.imgur.com/oxtquhS.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+After saving it, we can now restart the VM from the Azure portal by checking "client-1" and pressing the "Restart" button
+
+<p>
+<img src="https://i.imgur.com/QunI9vX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/0S2zEFD.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/dHZx2Hh.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Now, after restarting, we can copy the "Public IP address" of "client-1" and paste it on a different "Remote Desktop Connection" as shown above.
+<p>
+Again, we will connect to the VM with the same credentials as our "dc-1"
+<p>
+  
+Username: ***labuser***
+<p>
+  
+Password: ***Cyberlab123!***
+<p>
+
+<p> 
+  
+   - Next, We will attempt to ping "dc-1's" Private IP address using "client-1" with ***Powershell***
+
+  
+<p>
+<img src="https://i.imgur.com/EY8vVVj.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+When this window pops up, we can switch them all to "No" otherwise, it doesn't really affect anything.
+
+<p>
+<img src="https://i.imgur.com/q6uSgIg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+In order to ping "dc-1" Private IP address, we have to go back to ***Azure portal >>> Virtual Machines >>> dc-1 >>> Private IP address*** 
+<p>
+  
+Please copy the Private IP address and we will paste it on ***Powershell***
+<p>
+  
+  ***NOTE!!! AGAIN, THESE IP ADDRESSES MAY BE DIFFERENT ON YOUR END.***
+
+<p>
+<img src="https://i.imgur.com/EKwmRfb.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/SYrWyMg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+A window like this should pop up after clicking the program.
+<p>
+  
+For us to ping "dc-1" we can type ***ping 10.0.0.4*** which in my case, the Private IP address that my VM has.
+<p>
+Now, the data inside the box proves that we are connected with our domain controller (dc-1)
+<p>
+If you tried to ping it and you get an error that says "Request Timed Out" it could be because they're in different Virtual Networks or dc-1's Windows Firewall might still be on.
+<p> Re-trace the steps if you encounter any of these situations.
+
+<p>
+<img src="https://i.imgur.com/Q9vTaqt.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Next, we can type in ***"ipconfig /all"*** and if you look/scroll down the "DNS SERVERS" should be the same as "dc-1's" Private IP address.
+<p>
+This shows that we are on the right track.
+
+<p>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
 </p>
 <p>
 
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
 </p>
 <p>
 
+<p>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
 
+<p>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
