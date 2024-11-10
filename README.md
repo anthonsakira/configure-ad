@@ -408,21 +408,224 @@ If you tried to ping it and you get an error that says "Request Timed Out" it co
 Next, we can type in ***"ipconfig /all"*** and if you look/scroll down the "DNS SERVERS" should be the same as "dc-1's" Private IP address.
 <p>
 This shows that we are on the right track.
+<p>
+
+  - ***NEXT, WE WILL NOW INSTALL ACTIVE DIRECTORY IN THE DOMAIN CONTROLLER (dc-1)***. Please continue below.
+
+<p>
+<img src="https://i.imgur.com/ZgwbcGw.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/2OF6ik8.png" height="60%" width="60%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+First, go to (dc-1) and click on start (windows logo) bottom left corner and find "Server Manager"
+
+<p>
+<img src="https://i.imgur.com/ncwq5ZE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+
+When you click "Add roles and features" a window will pop up and you can follow the steps below.
+
+<img src="https://i.imgur.com/7HpfWBh.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/tp3xD7o.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Click on "Active Directory Domain Services" and press next.
+  
+<p>
+<img src="https://i.imgur.com/oMOWTWg.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+After clicking next, a window like this will pop up, just click "Add Features"
+  
+<p>
+<img src="https://i.imgur.com/Z0P9x7y.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Nothing has to be changed in this page so just click "Next"
+
+<p>
+<img src="https://i.imgur.com/lvsV4vj.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/yxKUbBx.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Check the box that says "Restart" then "Yes". Now we can Install it.
+<p>
+When the installation is done, we can now close the window.
+<p>
+
+  ***- Now we will be promoting as a domain controller. (Domain name can be anything you want)***
+    
+<p>
+<img src="https://i.imgur.com/xPsKWEa.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Go back to Server Manager, click the flag on the top right of the window and choose "Promote this server"
+
+<p>
+<img src="https://i.imgur.com/fdz4cDX.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+This window will then pop up and we can choose "Add a new forest"
+<p>
+  
+In this case, we will name our domain ***"mydomain.com"***
+<p>
+Click "next" when done.
+
+<p>
+<img src="https://i.imgur.com/UvwJArZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Our password doesn't matter in this project but it depends on how you use this on your own.
+<p>
+  
+We will set our password to ***Password1*** for tutorial pusposes only. We can click next afterwards.
+
+<p>
+<img src="https://i.imgur.com/PhYii0A.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Next, leave this uncheck and click next for the next few pages.
+
+<p>
+<img src="https://i.imgur.com/fQlRUop.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/7SgbOA4.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/HAkaY5S.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/S5uk0a4.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Now, for the last picture, click install
+<p>
+This will restart the VM automatically and we will need to log back in afterwards.
+
+<p>
+<img src="https://i.imgur.com/YsFxNAo.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Click "OK" when prompted
 
 <p>
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
 </p>
 <p>
 
+We are now going to try to re-log into "dc-1" using ***"mydomain.com\labuser"***
+<p> 
+  
+  ***NOTE!!!***    YOU HAVE TO USE THE BACK SLASH AND NOT FORWARD SLASH OR IT WON'T WORK.
+  
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+<img src="https://i.imgur.com/EOdvNeC.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
 </p>
 <p>
 
+Password should be the same ***"Cyberlab123!"***
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+Get logged in and see if it works.
+<p>
+
+  ***- Now will create a Domain Admin user within the domain***
+  
+<p>
+<img src="https://i.imgur.com/o0HdFk0.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
 </p>
 <p>
+
+Please follow through and don't mess anything up or it won't work.
+<p>
+Now, inside "dc-1" press "start" then click the drop down menu for "Windows Admin Tools" and click on "Active Directory Users and Computers"
+
+<p>
+<img src="https://i.imgur.com/EjUkFDS.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Inside the program, click the drop-down menu for "mydomain.com" and then right click on ***mydomain.com***
+<p>
+  
+Click on ***New*** --> ***Organizational Unit***
+
+
+<p>
+<img src="https://i.imgur.com/fGcK3lK.png" height="60%" width="60%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Now, type in ***_EMPLOYEES*** for the name.
+<p>
+Please make sure to include the underscore or this would not work.
+
+<p>
+<img src="https://i.imgur.com/S0jsE5i.png" height="60%" width="60%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/NzcrW7x.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+  
+Create another one named ***_ADMINS*** doing the same process
+<p>
+You shoul have both of these folders after.
+<p>
+
+  ***- Next up, we will be creating users.***
+  
+<p>
+<img src="https://i.imgur.com/dCKJf3P.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Double click on "_ADMINS", and inside of the folder right click and press new and click on "USER"
+
+<p>
+<img src="https://i.imgur.com/hTT60yF.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/0I7a3Lg.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+Make sure to fill in the underlined boxes
+<p>
+  
+Our first Admin user will be ***Jane Doe***
+<p>
+  
+Password will be ***Cyberlab123!***
+<p>
+Please make sure to only check the box that I specified. Click "Next" and then "Finish".
 
 <p>
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
