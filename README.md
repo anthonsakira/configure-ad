@@ -3,7 +3,7 @@
 </p>
 
 <h1> Active Directory Deployment in Cloud (Azure)</h1>
-This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
+This tutorial outlines the deployment and configuration of Active Directory along with a script using Powershell ISE within Azure Virtual Machines.<br />
 
 
 
@@ -19,8 +19,8 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>Operating Systems Used </h2>
 
-- Windows Server 2022
-- Windows 10 (21H2)
+- Windows Server 2022: Standard_D2s_v3 - 2 vcpus, 8 GiB memory
+- Windows 10 (21H2): Standard_D2s_v3 - 2 vcpus, 8 GiB memory
 
 <h2>High-Level Deployment and Configuration Steps</h2>
 
@@ -30,8 +30,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 - Step 4
 
 <h2>Deployment and Configuration Steps</h2>
-This project will be a 2 part project. In this 1st part, we will be creating our Virtual Machines (Domain Controller) and (Client). In order to make these we will need to create our Resource Group and Virtual Network and then we will then join them with the Virtual Machines that we will create.
-<br />
+This project will teach you step by step on how to Deploy Active Directory using Azure Virtual Machines along with with creating thousands of random users using a script on Powershell.
 
 </p>
 <p>
@@ -628,11 +627,221 @@ Password will be ***Cyberlab123!***
 Please make sure to only check the box that I specified. Click "Next" and then "Finish".
 
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+<img src="https://i.imgur.com/vXSN4Ow.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/8hxKlpq.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
 </p>
 <p>
 
+Now we're going to add ***Jane Doe*** in the built-in Admin Security Group.
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+  
+  ***Right click on Jane Doe --> Properties --> Member Of --> Add***
+
+<p>
+<img src="https://i.imgur.com/4wpXbfq.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
 </p>
 <p>
+<p>
+<img src="https://i.imgur.com/or9GORZ.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+We can type in "domain admins" then "check names" and it'll automatically associate the wording with the built-in group.
+<p>
+After that, we can click "Apply" then "OK"
+
+<p>
+<img src="https://i.imgur.com/XJU9h2U.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+After adding ***Jane Doe*** we're going to log off and re-log in on ***dc-1*** using ***mydomain.com\jane_admin***
+<p>
+We're going to be using this Admin User from now on.
+
+
+<p>
+<img src="https://i.imgur.com/dHH09bt.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/jw7yoN7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+  
+Next up, we will log in to ***client-1*** using our original domain admin ***"labuser"*** and join it to the domain controller
+<p>
+
+  To bring this window up just press ***Start --> System --> Rename this pc --> Under Computer name tab click "Change" --> Choose "Domain"***
+  <p>
+    
+  
+  Please type in ***mydomain.com*** under domain and put ***"mydomain.com\jane_admin"*** for Windows Security then click "OK"
+
+<p>
+<img src="https://i.imgur.com/xvc9baE.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+After joining it, it will give you a prompt that you have to restart, so just restart for everything to take effect.
+
+<p>
+<img src="https://i.imgur.com/0pQlbxq.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/q1bmtao.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+  
+Go back to ***dc-1*** and go to Active Directory Users and Computers.
+<p>
+  
+  We will now add another Organizational Unit called ***_CLIENTS***
+<p>
+  
+  Right click on ***mydomain.com --> New --> Organizational Unit --> _CLIENTS***
+
+<p>
+<img src="https://i.imgur.com/2Dp6bwv.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/GAvzz2C.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Once we've created our new folder, click on "Computers" then drag "client-1" into ***_CLIENTS***
+<p>
+  Press "Yes" when the Window above pops up
+<p> 
+
+  
+   - ***Next up, we will be setting up Remote Desktop for non-administrative users on Client-1 and generate additional users and attempt to log into client-1 with one of the users***
+  
+<p>
+<img src="https://i.imgur.com/TTcIrz8.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Now, log back in to "client-1" using ***mydomain.com\jane_admin*** and since client-1 is joined up with the domain we should be able to connect.
+
+<p>
+<img src="https://i.imgur.com/D1HzGKt.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/hk3MtpN.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/BXkOJ4C.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+In "client-1", please right click ***Start --> System --> Remote Desktop --> Select users that can remotely access pc***
+
+<p>
+<img src="https://i.imgur.com/nH608yX.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Click "Add" then type in "domain users", after that click on "check names" and it should automatically generate a built-in group. Press "OK" then "OK" again when done. 
+<p>
+In doing this, all user accounts by default are a member of this group.
+
+<p>
+<img src="https://i.imgur.com/Kq3yINI.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/hBpLAis.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Next, we will open up our "dc-1" as ***jane_admin*** and ***open Powershell ISE as administrator***
+<p>
+  
+Click "Start" then right click ***Powershell ISE and open as admin***
+
+<p>
+<img src="https://i.imgur.com/ek5QL9f.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Click on "New File" on the top left and then "Save" (Ctrl+S). Name it "create users" then press "Save".
+  
+<p>
+<img src="https://i.imgur.com/8ujt59b.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/6iTmZf0.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/dtt21TP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+  
+Now we will be generating random user accounts using a ***Powershell Script***. 
+<p>
+  
+Click the following for the user generator script: <a href="https://github.com/anthonsakira/RandomUserGenerator/blob/main/README.md"> ***SCRIPT***</a> 
+<p>
+  
+  Once on the website, click on "Raw" then copy and paste the script onto ***Powershell ISE***
+
+<p>
+<img src="https://i.imgur.com/yaQ1r8a.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/Crm1INU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+  
+Once pasted, we can now run the Script (F5) and observe the users being generated.
+
+<p>
+<img src="https://imgur.com/a/S5GLSrU" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/AZ8XpYg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+As you can see, the Password is set to ***Password1*** for all users specifically for this project and they are all being created.
+<p>
+  
+If you want to check the users we can go to ***"Active Directory Users and Computers"*** and click on "_EMPLOYEES"
+  
+<p>
+<img src="https://i.imgur.com/xunU7Vm.png" height="80%" width="80%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Now, we will try to log in on "client-1" with one of the names that we've generated 
+<p>
+  
+We can choose anyone from the list, so in my case I will be choosing ***"noma.fil"***, Password will be ***"Password1"***
+<p>
+
+***NOTE: Yours will be completely different because these names are generated randomly. Feel free to choose any that you like.***
+  
+<p>
+<img src="https://i.imgur.com/V7BZiPw.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+<p>
+<img src="https://i.imgur.com/vKbIZmC.png" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+</p>
+<p>
+
+Make sure the credentials are correct: ***mydomain.com\noma.fil*** and ***Password1***
+<p>
+And that concludes this project. Thank you.
